@@ -1,0 +1,15 @@
+{
+  "name": "tripsmith",
+  "private": true,
+  "type": "module",
+  "workspaces": ["apps/*", "packages/*"],
+  "engines": { "node": ">=20.0.0" },
+  "scripts": {
+    "dev": "concurrently -n WEB,API,WORKER -c blue,green,magenta \"pnpm --filter web dev\" \"pnpm --filter api dev\" \"pnpm --filter worker dev\"",
+    "build": "pnpm -r build",
+    "start": "concurrently -n API,WORKER,WEB -c green,magenta,blue \"pnpm --filter api start\" \"pnpm --filter worker start\" \"pnpm --filter web start\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
